@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import { Container, Header, Icon, Segment } from "semantic-ui-react";
 import * as ROUTES from "../../constants/routes";
-import { withAuthentication } from "../Session";
+import { AuthUserContext, withAuthentication } from "../Session";
 import PageView from "../Analytics/pageview";
 
 const ResponsiveContainer = lazy(() => import("../Navigation"));
