@@ -7,6 +7,7 @@ import {
 import { Container, Header, Icon, Segment } from "semantic-ui-react";
 import * as ROUTES from "../../constants/routes";
 import { withAuthentication } from "../Session";
+import PageView from "../Analytics/pageview";
 
 const ResponsiveContainer = lazy(() => import("../Navigation"));
 const SignInPage = lazy(() => import("../SignIn"));
@@ -123,6 +124,9 @@ class Routes extends Component {
             </Switch>
             {/* <Footer dark={dark} LanguageToggle={LanguageToggle} /> */}
           </ResponsiveContainer>
+          <AuthUserContext.Consumer>
+            {(authUser) => <PageView authUser={authUser} />}
+          </AuthUserContext.Consumer>
         </Router>
       </Suspense>
     );
