@@ -3,6 +3,7 @@ import app from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 import "firebase/analytics";
+import "firebase/performance"
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -25,6 +26,7 @@ class Firebase {
     this.db = app.database();
     this.googleProvider = new app.auth.GoogleAuthProvider();
     this.analytics = app.analytics();
+    this.performance = app.performance();
   }
   // *** Auth API - Create Account ***
   doCreateUserWithEmailAndPassword = (email, password) =>
