@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 import * as ROLES from "../../constants/roles";
 import { AuthUserContext } from "../Session";
-import { SignOutMenuItemButton } from "../SignOut";
+import { SignOutMenuItem, SignOutMenuItemButton } from "../SignOut";
 import {
   Button,
   Container,
@@ -72,6 +72,7 @@ const DesktopContainer = (props) => {
   return (
     <AuthUserContext.Consumer>
       {(authUser) => {
+        const ISADMIN = !!authUser && !!authUser.roles[ROLES.ADMIN];
         return (
           <Media greaterThan="mobile">
             <Visibility
@@ -126,45 +127,40 @@ const DesktopContainer = (props) => {
                         content={NAVIGATION.account}
                       />
                     )}
-                    {!!authUser && (
-                      <>
-                        {!!authUser.roles[ROLES.ADMIN] && (
+                    {ISADMIN && (
                           <Menu.Item
                             as={NavLink}
                             to={ROUTES.ADMIN}
                             name={NAVIGATION.admin}
                             exact
+                            icon="cog"
                             content={NAVIGATION.admin}
                           />
                         )}
-                      </>
-                    )}
                     <Menu.Item position="right">
                       {authUser ? (
-                        <SignOutMenuItemButton fixed={fixed} />
+                        <SignOutMenuItemButton fixed={fixed} language={language} />
                       ) : (
                         <>
                           <Button
                             basic
                             as={NavLink}
                             to={ROUTES.SIGN_UP}
-                            name="Sign Up"
+                            name={NAVIGATION.signUp}
                             inverted={!fixed}
+                            icon="signup"
                             style={{ marginRight: "0.5em" }}
-                          >
-                            <Icon name="signup" />
-                            Sign Up
-                          </Button>
+                            content={NAVIGATION.signUp}
+                          />
                           <Button
                             basic
                             as={NavLink}
                             to={ROUTES.SIGN_IN}
-                            name="Sign In"
+                            name={NAVIGATION.signIn}
+                            icon="sign-in"
                             inverted={!fixed}
-                          >
-                            <Icon name="sign-in" />
-                            Sign In
-                          </Button>
+                            content={NAVIGATION.signIn}
+                         />
                         </>
                       )}
                       {fixed && (
@@ -211,15 +207,17 @@ const MobileContainer = (props) => {
   return (
     <AuthUserContext.Consumer>
       {(authUser) => {
+        const ISADMIN = !!authUser && !!authUser.roles[ROLES.ADMIN];
         return (
           <Media as={Sidebar.Pushable} at="mobile">
             <Sidebar.Pushable>
               <Sidebar
                 as={Menu}
-                animation="overlay"
+                animation="push"
                 inverted
                 onHide={handleSidebarHide}
                 vertical
+                width="thin"
                 visible={open}
               >
                 <Menu.Item
@@ -227,22 +225,55 @@ const MobileContainer = (props) => {
                   to={ROUTES.HOME}
                   name={NAVIGATION.home}
                   exact
+                  icon="home"
                   content={NAVIGATION.home}
+                  onClick={handleSidebarHide}
                 />
+                {!!authUser && (
                 <Menu.Item
                   as={NavLink}
                   to={ROUTES.ACCOUNT}
                   name={NAVIGATION.account}
                   exact
+                  icon="user"
                   content={NAVIGATION.account}
-                />
+                  onClick={handleSidebarHide}
+                />)}
+                {ISADMIN && (
                 <Menu.Item
                   as={NavLink}
                   to={ROUTES.ADMIN}
                   name={NAVIGATION.admin}
                   exact
+                  icon="cog"
                   content={NAVIGATION.admin}
-                />
+                  onClick={handleSidebarHide}
+                />)}
+
+                {authUser ? (
+                    <SignOutMenuItem language={language} />
+                ) : (
+                  <>
+                    <Menu.Item
+                      as={NavLink}
+                      to={ROUTES.SIGN_IN}
+                      name={NAVIGATION.signIn}
+                      exact
+                      icon="sign-in"
+                      content={NAVIGATION.signIn}
+                      onClick={handleSidebarHide}
+                    />
+                    <Menu.Item
+                      as={NavLink}
+                      to={ROUTES.SIGN_UP}
+                      name={NAVIGATION.signUp}
+                      exact
+                      icon="signup"
+                      content={NAVIGATION.signUp}
+                      onClick={handleSidebarHide}
+                    />
+                    </>
+                )}
               </Sidebar>
 
               <Sidebar.Pusher dimmed={open}>

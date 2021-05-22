@@ -10,7 +10,7 @@ import {
   Segment,
   Icon,
   Divider,
-  Container,
+  Form,
 } from "semantic-ui-react";
 import logo from "../../media/Logo_500.webp";
 
@@ -18,10 +18,13 @@ import { PasswordForgetLink } from "../PasswordForget";
 import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
 import * as ROLES from "../../constants/roles";
+import TRANSLATIONS from "../../constants/translation";
 
 const SignInPage = (props) => {
+  const {language} = props;
+  const { SIGNUP } = TRANSLATIONS[`${language}`];
   return (
-    <Container fluid>
+    <Segment basic inverted={props.dark} fluid="true" style={{ margin: 0 }}>
       <Segment basic inverted={props.dark} fluid="true">
         <Grid
           textAlign="center"
@@ -29,20 +32,24 @@ const SignInPage = (props) => {
           verticalAlign="middle"
         >
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as="h2" textAlign="center" inverted={props.dark} >
+            <Header as="h2" textAlign="center" inverted={props.dark}>
               <Image src={logo} size="medium" /> Sign In
             </Header>
-            <Segment stacked inverted={props.dark} >
-              <SignInGoogle {...props} />
-              <Divider inverted={props.dark} horizontal>
-                <Icon name="circle outline" />
+            <Segment stacked inverted={props.dark}>
+              <SignInForm {...props} />
+              <Divider horizontal inverted={props.dark}>
+                Or
+              </Divider>
+              <SignInGoogle {...props} SIGNUP={SIGNUP} />
+              <Divider hidden inverted={props.dark} horizontal>
+                {/* <Icon name="circle outline" /> */}
               </Divider>
               <PasswordForgetLink {...props} />
             </Segment>
           </Grid.Column>
         </Grid>
       </Segment>
-    </Container>
+    </Segment>
   );
 };
 
@@ -136,7 +143,7 @@ class SignInGoogleBase extends Component {
 
   render() {
     const { error } = this.state;
-    const {dark} = this.props;
+    const { dark, SIGNUP } = this.props;
     return (
       <>
         <Button
@@ -150,13 +157,97 @@ class SignInGoogleBase extends Component {
           inverted={dark}
         >
           <Icon name="google" />
-          Connect with Google
+          {SIGNUP.google}
         </Button>
         {error && <Message error content={error.message} />}
       </>
     );
   }
 }
+
+const INITIAL_STATE = {
+  email: "",
+  password: "",
+  error: false,
+};
+class SignInFormBase extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { ...INITIAL_STATE };
+  }
+
+  onSubmit = (event) => {
+    const { email, password } = this.state;
+
+    this.props.firebase
+      .doSignInWithEmailAndPassword(email, password)
+      .then(() => {
+        this.setState({ ...INITIAL_STATE });
+        this.props.history.push(ROUTES.ACCOUNT);
+      })
+      .catch((error) => {
+        if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
+          error.message = ERROR_MSG_ACCOUNT_EXISTS;
+        }
+        this.setState({ error });
+      });
+
+    event.preventDefault();
+  };
+
+  onChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  render() {
+    const { email, password, error } = this.state;
+    const { dark } = this.props;
+
+    const isInvalid = password === "" || email === "";
+
+    return (
+      <Form error={error} size="large" onSubmit={this.onSubmit} inverted={dark}>
+        {error && <Message error={error} content={error.message} />}
+        <Form.Input
+          fluid
+          icon="mail"
+          iconPosition="left"
+          name="email"
+          value={email}
+          onChange={this.onChange}
+          type="text"
+          placeholder="Email Address"
+          inverted={dark}
+        />
+        <Form.Input
+          fluid
+          icon="lock"
+          iconPosition="left"
+          name="password"
+          value={password}
+          onChange={this.onChange}
+          placeholder="Password"
+          type="password"
+          inverted={dark}
+        />
+        <Button
+          disabled={isInvalid}
+          color="black"
+          type="submit"
+          fluid
+          size="large"
+          inverted={dark}
+          basic={dark}
+        >
+          Sign In
+        </Button>
+      </Form>
+    );
+  }
+}
+
+const SignInForm = compose(withRouter, withFirebase)(SignInFormBase);
 
 const SignInGoogle = compose(withRouter, withFirebase)(SignInGoogleBase);
 

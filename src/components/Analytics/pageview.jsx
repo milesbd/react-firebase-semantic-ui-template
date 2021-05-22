@@ -9,15 +9,7 @@ const PageView = (props) => {
   const { analytics } = firebase;
 
   useEffect(() => {
-    console.log(location);
-    const page_path = location.pathname + location.search;
-    analytics.setCurrentScreen(page_path);
-    analytics.logEvent("page_view", { page_path });
-  }, [location, analytics]);
-
-  useEffect(() => {
     if (authUser) {
-      console.log(authUser);
       const { uid, providerData, roles } = authUser;
       const { providerId } = providerData;
       if (!Object.prototype.hasOwnProperty.call(roles, "ADMIN")) {
@@ -27,6 +19,12 @@ const PageView = (props) => {
       }
     }
   }, [authUser, analytics]);
+  
+  useEffect(() => {
+    const page_path = location.pathname + location.search;
+    analytics.setCurrentScreen(page_path);
+    analytics.logEvent("page_view", { page_path });
+  }, [location, analytics]);
   return null;
 };
 

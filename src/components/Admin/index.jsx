@@ -41,13 +41,15 @@ class AdminPage extends Component {
   }
   render() {
     const { users, loading } = this.state;
-    return (
+    const {dark} = this.props;
+    return(
       <Segment
-        style={{ paddingTop: "0", paddingBottom: 0, minHeight: "95vh" }}
+        style={{ marginTop:0, paddingBottom: 0, minHeight: "95vh" }}
         basic
+        inverted={dark}
         loading={loading}
       >
-        <UserListPage users={users} dark={this.props.dark}/>
+        <UserListPage users={users} dark={dark}/>
       </Segment>
     );
   }

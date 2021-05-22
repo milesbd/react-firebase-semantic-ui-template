@@ -71,6 +71,7 @@ class LoginManagementBase extends Component {
 
   render() {
     const { activeSignInMethods, error } = this.state;
+    const { ACCOUNT } = this.props;
 
     if (activeSignInMethods > 1) {
       return (
@@ -78,7 +79,7 @@ class LoginManagementBase extends Component {
           <Divider hidden />
           <Header as="h2" textAlign="left">
             <Icon size="tiny" name="users" />
-            Sign In Methods
+            {ACCOUNT.signInMethods}
           </Header>
           <Divider hidden />
           {SIGN_IN_METHODS.map((signInMethod) => {
@@ -101,6 +102,7 @@ class LoginManagementBase extends Component {
                     signInMethod={signInMethod}
                     onLink={this.onSocialLoginLink}
                     onUnlink={this.onUnlink}
+                    ACCOUNT={ACCOUNT}
                   />
                 )}
               </Button.Group>
@@ -121,6 +123,7 @@ const SocialLoginToggle = ({
   signInMethod,
   onLink,
   onUnlink,
+  ACCOUNT
 }) =>
   isEnabled ? (
     <>
@@ -132,7 +135,7 @@ const SocialLoginToggle = ({
         <Icon
           name={signInMethod.id === "google.com" ? "google" : "mail outline"}
         />
-        Deactivate{" "}
+        {ACCOUNT.deactivate}
         {signInMethod.id === "password" ? "email & password" : signInMethod.id}
       </Button>
       <Button.Or />
@@ -142,7 +145,7 @@ const SocialLoginToggle = ({
       <Icon
         name={signInMethod.id === "google.com" ? "google" : "mail outline"}
       />
-      Link {signInMethod.id}
+     {ACCOUNT.link + signInMethod.id}
     </Button>
   );
 
@@ -165,7 +168,7 @@ class DefaultLoginToggle extends Component {
   };
 
   render() {
-    const { onlyOneLeft, isEnabled, signInMethod, onUnlink } = this.props;
+    const { onlyOneLeft, isEnabled, signInMethod, onUnlink, ACCOUNT } = this.props;
 
     const { passwordOne, passwordTwo } = this.state;
 
@@ -180,7 +183,7 @@ class DefaultLoginToggle extends Component {
           <Icon
             name={signInMethod.id === "google.com" ? "google" : "mail outline"}
           />
-          Deactivate{" "}
+          {ACCOUNT.deactivate}
           {signInMethod.id === "password"
             ? "email & password"
             : signInMethod.id}
@@ -205,7 +208,7 @@ class DefaultLoginToggle extends Component {
         />
 
         <Button disabled={isInvalid} type="submit">
-          Link {signInMethod.id}
+        {ACCOUNT.link + signInMethod.id}
         </Button>
       </form>
     );

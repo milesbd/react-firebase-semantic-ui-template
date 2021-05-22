@@ -101,7 +101,7 @@ class ChangePasswordBase extends Component {
     const isPasswordInvalid =
       currentPassword === "" || passwordOne === "" || passwordTwo === "";
     const passwordLengthMatch = passwordOne.length === passwordTwo.length;
-    const { dark, authUser } = this.props;
+    const { dark, authUser, ACCOUNT } = this.props;
     const goolgeUser =
       authUser.providerData.providerId === "google.com" ? true : false;
     return (
@@ -109,7 +109,7 @@ class ChangePasswordBase extends Component {
         <Divider hidden />
         <Header as="h2" textAlign="left" inverted={dark}>
           <Icon size="tiny" name="lock" inverted={dark} />
-          Update Password
+          {ACCOUNT.updatePassword}
         </Header>
         <Divider hidden />
         {goolgeUser && (
@@ -117,8 +117,8 @@ class ChangePasswordBase extends Component {
             <Message
               style={{ marginLeft: "2em", marginRight: "2em" }}
               floating
-              header="Your Account is connected using Google"
-              content="Password Updates for accounts connected through Google must be done in your Google Account"
+              header={ACCOUNT.infoHeader}
+              content={ACCOUNT.infoMessage}
             />
           </Segment>
         )}
@@ -152,7 +152,7 @@ class ChangePasswordBase extends Component {
                 name="currentPassword"
                 value={currentPassword}
                 onChange={this.onChange}
-                placeholder="Current Password"
+                placeholder={ACCOUNT.currentPassword}
                 disabled={goolgeUser}
                 type="password"
               />
@@ -163,7 +163,7 @@ class ChangePasswordBase extends Component {
                 name="passwordOne"
                 value={passwordOne}
                 onChange={this.onChange}
-                placeholder="Password"
+                placeholder={ACCOUNT.newPassword}
                 disabled={goolgeUser}
                 type="password"
               />
@@ -176,7 +176,7 @@ class ChangePasswordBase extends Component {
                 onChange={this.onChange}
                 type="password"
                 disabled={goolgeUser}
-                placeholder="Confirm Password"
+                placeholder={ACCOUNT.confirmNewPassword}
               ></Form.Field>
               <Form.Button
                 disabled={isPasswordInvalid || !passwordLengthMatch}
@@ -185,9 +185,8 @@ class ChangePasswordBase extends Component {
                 type="submit"
                 inverted={dark}
                 basic={dark}
-              >
-                Update Password
-              </Form.Button>
+                content={ACCOUNT.updatePassword}
+              />
             </Form.Group>
           </Form>
         )}

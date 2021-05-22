@@ -17,9 +17,11 @@ import * as ROUTES from "../../constants/routes";
 import * as ROLES from "../../constants/roles";
 import logo from "../../media/Logo_500.webp";
 import { SignInGoogle } from "../SignIn";
+import TRANSLATIONS from "../../constants/translation";
 
 const SignUpPage = (props) => {
-  const { dark } = props;
+  const { dark, language } = props;
+  const { SIGNUP } = TRANSLATIONS[`${language}`];
   return (
     <Segment
       inverted={dark}
@@ -34,9 +36,10 @@ const SignUpPage = (props) => {
       >
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as="h2" textAlign="center" inverted={dark}>
-            <Image src={logo} loading="lazy" size="small" alt="Logo" width="33" height="48" /> Sign up for your account
+            <Image src={logo} loading="lazy" size="small" alt="Logo" width="33" height="48" />{SIGNUP.header}
           </Header>
           <SignUpForm {...props} />
+          <SignUpLink dark={dark} SIGNUP={SIGNUP}  />
         </Grid.Column>
       </Grid>
     </Segment>
@@ -137,11 +140,12 @@ class SignUpFormBase extends Component {
       email === "" ||
       firstName === "" ||
       lastName === "";
-    const { dark } = this.props;
+    const { dark, language } = this.props;
+    const { SIGNUP } = TRANSLATIONS[`${language}`];
     return (
       <Container fluid>
         <Form
-          error={error}
+          error={error ?true :false}
           size="large"
           onSubmit={this.onSubmit}
           inverted={dark}
@@ -152,7 +156,7 @@ class SignUpFormBase extends Component {
               fluid
               icon="user"
               iconPosition="left"
-              placeholder="First Name"
+              placeholder={SIGNUP.firstName}
               name="firstName"
               value={firstName}
               onChange={this.onChange}
@@ -164,7 +168,7 @@ class SignUpFormBase extends Component {
               fluid
               icon="user"
               iconPosition="left"
-              placeholder="Last Name"
+              placeholder={SIGNUP.lastName}
               name="lastName"
               value={lastName}
               onChange={this.onChange}
@@ -180,7 +184,7 @@ class SignUpFormBase extends Component {
               value={email}
               onChange={this.onChange}
               type="text"
-              placeholder="Email Address"
+              placeholder={SIGNUP.email}
               required
               inverted={dark}
             />
@@ -193,7 +197,7 @@ class SignUpFormBase extends Component {
               onChange={this.onChange}
               type="text"
               maxLength={10}
-              placeholder="Phone Number"
+              placeholder={SIGNUP.phone}
               inverted={dark}
             />
             <Form.Input
@@ -203,7 +207,7 @@ class SignUpFormBase extends Component {
               name="passwordOne"
               value={passwordOne}
               onChange={this.onChange}
-              placeholder="Password"
+              placeholder={SIGNUP.passwordOne}
               type="password"
               required
               inverted={dark}
@@ -216,7 +220,7 @@ class SignUpFormBase extends Component {
               value={passwordTwo}
               onChange={this.onChange}
               type="password"
-              placeholder="Confirm Password"
+              placeholder={SIGNUP.passwordTwo}
               required
               inverted={dark}
             />
@@ -228,13 +232,12 @@ class SignUpFormBase extends Component {
               size="large"
               inverted={dark}
               basic={dark}
-            >
-              Sign Up
-            </Button>
+              content={SIGNUP.signUp}
+            />
             <Divider horizontal inverted={dark}>
-              Or
+              {SIGNUP.or}
             </Divider>
-            <SignInGoogle dark={dark} />
+            <SignInGoogle dark={dark} SIGNUP={SIGNUP} />
           </Segment>
         </Form>
       </Container>
@@ -243,12 +246,12 @@ class SignUpFormBase extends Component {
 }
 
 const SignUpLink = (props) => {
-  const { dark } = props;
+  const { dark, SIGNUP } = props;
   return (
-    <Message color={dark ? "black" : null}>
-      Don't have an account?{" "}
+    <Message  color={dark ? "black" : null}>
+      {SIGNUP.message}
       <Link to={ROUTES.SIGN_UP} style={{ color: dark ? "#A7A7A7" : "#0051a0" }}>
-        Sign Up
+        {SIGNUP.signUp}
       </Link>
     </Message>
   );

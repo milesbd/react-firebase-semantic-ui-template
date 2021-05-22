@@ -71,13 +71,13 @@ class ChangeEmailandNameBase extends Component {
   render() {
     const { firstName, lastName, error, success, loading } = this.state;
     const isUserInvalid = firstName === "" || lastName === "";
-    const { authUser, dark } = this.props;
+    const { authUser, dark, ACCOUNT } = this.props;
     return (
       <Segment inverted={dark}>
         <Divider hidden />
         <Header as="h2" textAlign="left" inverted={dark}>
           <Icon size="tiny" name="user" />
-          Your Info
+          {ACCOUNT.yourInfo}
         </Header>
         <Divider hidden />
         <Form
@@ -130,9 +130,8 @@ class ChangeEmailandNameBase extends Component {
               type="submit"
               inverted={dark}
               basic={dark}
-            >
-              Update User Info
-            </Form.Button>
+              content={ACCOUNT.updateInfoButton}
+            />
           </Form.Group>
         </Form>
       </Segment>

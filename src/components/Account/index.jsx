@@ -4,6 +4,7 @@ import { AuthUserContext, withAuthorization } from "../Session";
 import { ChangePassword } from "./changePassword";
 import { ChangeEmailandName } from "./changeUserDetails";
 import LoginManagement from "./loginManagement";
+import TRANSLATIONS from "../../constants/translation";
 
 import { Header, Icon, Segment, Divider, Image } from "semantic-ui-react";
 
@@ -14,7 +15,6 @@ const INITIAL_STATE = {
 class AccountBase extends Component {
   constructor(props) {
     super(props);
-
     this.state = { ...INITIAL_STATE };
   }
 
@@ -28,8 +28,8 @@ class AccountBase extends Component {
 
   render() {
     const { loading } = this.state;
-    const { dark } = this.props;
-
+    const { dark, language } = this.props;
+    const { ACCOUNT } = TRANSLATIONS[`${language}`];
     return (
       <AuthUserContext.Consumer>
         {(authUser) => {
@@ -42,21 +42,34 @@ class AccountBase extends Component {
                 basic
                 inverted={dark}
               >
-                <PageHeader {...this.props} />
+                <PageHeader {...this.props} ACCOUNT={ACCOUNT} />
                 <Divider inverted={dark} />
                 <Segment basic inverted={dark}>
-                  <PageSubHeader authUser={authUser} dark={dark} />
+                  <PageSubHeader
+                    authUser={authUser}
+                    ACCOUNT={ACCOUNT}
+                    dark={dark}
+                  />
                 </Segment>
                 <Segment basic inverted={dark} style={{ marginBottom: 0 }}>
                   <Segment.Group>
-                    <ChangeEmailandName authUser={authUser} {...this.props} />
-                    <ChangePassword authUser={authUser} {...this.props} />
+                    <ChangeEmailandName
+                      authUser={authUser}
+                      {...this.props}
+                      ACCOUNT={ACCOUNT}
+                    />
+                    <ChangePassword
+                      authUser={authUser}
+                      {...this.props}
+                      ACCOUNT={ACCOUNT}
+                    />
                     {authUser.email && (
-                      <LoginManagement authUser={authUser} {...this.props} />
+                      <LoginManagement
+                        authUser={authUser}
+                        {...this.props}
+                        ACCOUNT={ACCOUNT}
+                      />
                     )}
-                    {/* <Segment inverted={dark}>Middle</Segment>
-                    <Segment inverted={dark}>Middle</Segment>
-                    <Segment inverted={dark}>Bottom</Segment> */}
                   </Segment.Group>
                 </Segment>
               </Segment>
@@ -69,31 +82,34 @@ class AccountBase extends Component {
 }
 
 const PageHeader = (props) => {
-  const { dark } = props;
+  const { dark, ACCOUNT } = props;
   return (
     <Segment fluid="true" basic inverted={dark}>
       <Divider hidden />
       <Header as="h2" icon inverted={dark}>
         <Icon name="user circle" inverted={dark} />
-        Account Settings
-        <Header.Subheader>Manage your account details.</Header.Subheader>
+        {ACCOUNT.heading}
+        <Header.Subheader content={ACCOUNT.subHeading} />
       </Header>
     </Segment>
   );
 };
 
-const PageSubHeader = ({ authUser, dark }) => {
+const PageSubHeader = ({ authUser, dark, ACCOUNT }) => {
   const photoURL = authUser.providerData.photoURL;
   return (
     <Header as="h3" textAlign="left" inverted={dark}>
       {photoURL && <Image src={photoURL} size="large" circular />}
 
       <Header.Content>
-        Welcome {authUser.displayName ? authUser.displayName : authUser.email}
-        <Header.Subheader>
-          Member since{" "}
-          {new Date(Date.parse(authUser.metadata.creationTime)).toDateString()}
-        </Header.Subheader>
+        {ACCOUNT.welcome}
+        {authUser.displayName ? authUser.displayName : authUser.email}
+        <Header.Subheader
+          content={
+            ACCOUNT.memberSince +
+            new Date(Date.parse(authUser.metadata.creationTime)).toDateString()
+          }
+        />
       </Header.Content>
     </Header>
   );

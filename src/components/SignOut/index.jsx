@@ -1,21 +1,28 @@
 import React from "react";
-import { Dropdown, Icon, Button } from "semantic-ui-react";
-
+import { Icon, Button, Menu } from "semantic-ui-react";
 import { withFirebase } from "../Firebase";
+import TRANSLATIONS from "../../constants/translation";
 
-const SignOutMenuItemBase = ({ firebase }) => (
-  <Dropdown.Item name="Sign Out" onClick={firebase.doSignOut}>
-    <Icon name="sign-out" />
-    Sign Out
-  </Dropdown.Item>
-);
+const SignOutMenuItemBase = (props) => {
+  const { firebase, language } = props;
+  const { NAVIGATION } = TRANSLATIONS[`${language}`];
+  return (
+  <Menu.Item
+    name={NAVIGATION.signOut}
+    exact
+    icon="sign-out"
+    content={NAVIGATION.signOut}
+    onClick={firebase.doSignOut}
+  />
+)};
 
 const SignOutMenuItemButtonBase = (props) => {
-  const { firebase, fixed } = props;
+  const { firebase, fixed, language } = props;
+  const { NAVIGATION } = TRANSLATIONS[`${language}`];
   return (
     <Button basic as="a" inverted={!fixed} onClick={firebase.doSignOut}>
       <Icon name="sign-out" />
-      Sign Out
+      {NAVIGATION.signOut}
     </Button>
   );
 };
