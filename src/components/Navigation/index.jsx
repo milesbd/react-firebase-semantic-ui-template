@@ -141,7 +141,7 @@ const DesktopContainer = (props) => {
                       {authUser ? (
                         <SignOutMenuItemButton fixed={fixed} language={language} />
                       ) : (
-                        <>
+                        <React.Fragment>
                           <Button
                             basic
                             as={NavLink}
@@ -161,10 +161,10 @@ const DesktopContainer = (props) => {
                             inverted={!fixed}
                             content={NAVIGATION.signIn}
                          />
-                        </>
+                        </React.Fragment>
                       )}
                       {fixed && (
-                        <>
+                        <React.Fragment>
                           <Dropdown
                             placeholder={language}
                             options={options}
@@ -179,7 +179,7 @@ const DesktopContainer = (props) => {
                             toggleDark={toggleDark}
                             fixed={fixed}
                           />
-                        </>
+                        </React.Fragment>
                       )}
                     </Menu.Item>
                   </Container>
@@ -253,7 +253,7 @@ const MobileContainer = (props) => {
                 {authUser ? (
                     <SignOutMenuItem language={language} />
                 ) : (
-                  <>
+                  <React.Fragment>
                     <Menu.Item
                       as={NavLink}
                       to={ROUTES.SIGN_IN}
@@ -272,7 +272,7 @@ const MobileContainer = (props) => {
                       content={NAVIGATION.signUp}
                       onClick={handleSidebarHide}
                     />
-                    </>
+                    </React.Fragment>
                 )}
               </Sidebar>
 

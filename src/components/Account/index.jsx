@@ -34,7 +34,7 @@ class AccountBase extends Component {
       <AuthUserContext.Consumer>
         {(authUser) => {
           return (
-            <>
+            <React.Fragment>
               <Segment
                 style={{ padding: "0", minHeight: "95vh", margin: 0 }}
                 textAlign="center"
@@ -73,7 +73,7 @@ class AccountBase extends Component {
                   </Segment.Group>
                 </Segment>
               </Segment>
-            </>
+            </React.Fragment>
           );
         }}
       </AuthUserContext.Consumer>

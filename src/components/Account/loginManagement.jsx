@@ -126,7 +126,7 @@ const SocialLoginToggle = ({
   ACCOUNT
 }) =>
   isEnabled ? (
-    <>
+    <React.Fragment>
       <Button
         inline
         onClick={() => onUnlink(signInMethod.id)}
@@ -139,7 +139,7 @@ const SocialLoginToggle = ({
         {signInMethod.id === "password" ? "email & password" : signInMethod.id}
       </Button>
       <Button.Or />
-    </>
+    </React.Fragment>
   ) : (
     <Button onClick={() => onLink(signInMethod.provider)}>
       <Icon
@@ -175,7 +175,7 @@ class DefaultLoginToggle extends Component {
     const isInvalid = passwordOne !== passwordTwo || passwordOne === "";
 
     return isEnabled ? (
-      <>
+      <React.Fragment>
         <Button
           onClick={() => onUnlink(signInMethod.id)}
           disabled={onlyOneLeft}
@@ -189,7 +189,7 @@ class DefaultLoginToggle extends Component {
             : signInMethod.id}
         </Button>
         <Button.Or />
-      </>
+      </React.Fragment>
     ) : (
       <form onSubmit={this.onSubmit}>
         <input

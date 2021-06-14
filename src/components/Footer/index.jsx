@@ -1,120 +1,169 @@
 import React from "react";
-import { Container, Grid, Segment, Header, List } from "semantic-ui-react";
+import {
+  Container,
+  Grid,
+  Segment,
+  Header,
+  List,
+  Icon,
+  Divider
+} from "semantic-ui-react";
+import TRANSLATIONS from "../../constants/translation";
+import { isMobile } from "react-device-detect";
 
 const Footer = (props) => {
-  // const {dark} = props
-  const {LanguageToggle} = props;
+  const { language } = props;
+  const { FOOTER } = TRANSLATIONS[`${language}`];
   return (
-    <>
-      <Segment inverted vertical style={{ padding: "5em 0em" }}>
-        <Container>
-          <Grid divided inverted stackable>
-            <Grid.Row>
-              <Grid.Column width={3}>
-                <Header inverted as="h3" content="Support" />
-                <List link inverted relaxed size="large" >
-                  <List.Item
-                    as="a"
-                    style={{padding:"0.5em"}}
-                    href="tel:18669321801"
-                    title="Call Support 1 (866) 932-1801 "
-                    content="+1 (866) 932-1801"
+    <Segment inverted vertical style={{ padding: "5rem 0rem 1rem 0rem" }}>
+      <Container>
+        <Grid inverted stackable>
+          <Grid.Row>
+            <Grid.Column
+              width={4}
+              stretched
+              textAlign={isMobile ? "center" : "left"}
+            >
+              <Header inverted as="h3" content={FOOTER.support} />
+              <List link inverted relaxed size="large">
+                <List.Item
+                  as="a"
+                  style={{ padding: "0.5em" }}
+                  href="tel:18669321801"
+                  title={FOOTER.phoneTitle}
+                >
+                  <Icon name="phone" style={{ marginRight: "0.5em" }} />
+                  {FOOTER.phone}
+                </List.Item>
+                <List.Item
+                  as="a"
+                  style={{ padding: "0.5em" }}
+                  href="https://react.semantic-ui.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  title={FOOTER.helpCenter}
+                >
+                  <Icon name="help" style={{ marginRight: "0.5em" }} />
+                  {FOOTER.helpCenter}
+                </List.Item>
+                <List.Item
+                  as="a"
+                  style={{ padding: "0.5em" }}
+                  href={FOOTER.mailHref}
+                  title={FOOTER.mailTitle}
+                >
+                  <Icon name="mail outline" style={{ marginRight: "0.5em" }} />
+                  {FOOTER.mail}
+                </List.Item>
+              </List>
+            </Grid.Column>
+            <Grid.Column
+              width={4}
+              stretched
+              textAlign={isMobile ? "center" : "left"}
+            >
+              <Header inverted as="h3" content={FOOTER.company} />
+              <List link inverted relaxed size="large">
+                <List.Item
+                  as="a"
+                  style={{ padding: "0.5em" }}
+                  href="#"
+                  title={FOOTER.about}
+                >
+                  <Icon name="info circle" style={{ marginRight: "0.5em" }} />
+                  {FOOTER.about}
+                </List.Item>
+                <List.Item
+                  as="a"
+                  style={{ padding: "0.5em" }}
+                  href="#"
+                  title={FOOTER.location}
+                >
+                  <Icon name="map marker" style={{ marginRight: "0.5em" }} />
+                  {FOOTER.location}
+                </List.Item>
+                <List.Item
+                  as="a"
+                  style={{ padding: "0.5em" }}
+                  href="#"
+                  title={FOOTER.blog}
+                >
+                  <Icon
+                    name="newspaper outline"
+                    style={{ marginRight: "0.5em" }}
                   />
-                  <List.Item
-                    as="a"
-                    style={{padding:"0.5em"}}
-                    href="https://retail-support.lightspeedhq.com/"
-                    target="_blank"
-                    rel="noreferrer"
-                    title="Retail Help Center"
-                  >
-                    Retail Help Center
-                  </List.Item>
-                  <List.Item
-                    as="a"
-                    style={{padding:"0.5em"}}
-                    rel="noreferrer"
-                    href="https://ecom-support.lightspeedhq.com/"
-                    target="_blank"
-                    title="eCom Help Center"
-                  >
-                    eCom Help Center
-                  </List.Item>
-                  <List.Item style={{textAlign:"left", padding:"0.5em"}} >
-                    <LanguageToggle />
-                  </List.Item>
-                </List>
-              </Grid.Column>
-              <Grid.Column width={3}>
-                <Header inverted as="h3" content="Company" />
-                <List link inverted relaxed size="large">
-                  <List.Item
-                    as="a"
-                    style={{padding:"0.5em"}}
-                    rel="noreferrer"
-                    href="https://www.lightspeedhq.com/contact/"
-                    target="_blank"
-                    title="Contact & Locations"
-                  >
-                    Contact & Locations
-                  </List.Item>
-                  <List.Item
-                    as="a"
-                    style={{padding:"0.5em"}}
-                    rel="noreferrer"
-                    href="https://www.lightspeedhq.com/blog/"
-                    target="_blank"
-                    title="Lightspeed Blog"
-                  >
-                    Lightspeed Blog
-                  </List.Item>
-                  <List.Item
-                    as="a"
-                    style={{padding:"0.5em"}}
-                    rel="noreferrer"
-                    href="https://www.lightspeedhq.com/events/"
-                    target="_blank"
-                    title="Events"
-                  >
-                    Lightspeed Events
-                  </List.Item>
-                  <List.Item
-                    as="a"
-                    style={{padding:"0.5em"}}
-                    rel="noreferrer"
-                    href="https://community.lightspeedhq.com/"
-                    target="blank"
-                    title="Lightspeed Community"
-                  >
-                    Lightspeed Community
-                  </List.Item>
-                  <List.Item
-                    as="a"
-                    style={{padding:"0.5em"}}
-                    rel="noreferrer"
-                    href="https://status.lightspeedhq.com/"
-                    target="blank"
-                    title="Status Page"
-                  >
-                    Status Page
-                  </List.Item>
-                </List>
-              </Grid.Column>
-              <Grid.Column width={7}>
-                <Header as="h3" inverted>
-                  Professional Services
-                  <Header.Subheader as="p" style={{ paddingTop: "1em" }}>
-                    We offer a high-touch customer journey and white-glove
-                    service empowering premium customers to be more successful
-                    than ever.
-                  </Header.Subheader>
-                </Header>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Container>
-      </Segment>
-    </>
+                  {FOOTER.blog}
+                </List.Item>
+                <List.Item
+                  as="a"
+                  style={{ padding: "0.5em" }}
+                  href="#"
+                  title={FOOTER.events}
+                >
+                  <Icon
+                    name="calendar alternate outline"
+                    style={{ marginRight: "0.5em" }}
+                  />
+                  {FOOTER.events}
+                </List.Item>
+              </List>
+            </Grid.Column>
+            <Grid.Column width={8} textAlign={isMobile ? "center" : "right"}>
+              <Header as="h3" inverted>
+                {FOOTER.h3}
+                <Header.Subheader as="p" style={{ paddingTop: "1em" }}>
+                  {FOOTER.subheader}
+                </Header.Subheader>
+              </Header>
+              <List horizontal inverted relaxed>
+                <List.Item
+                  as="a"
+                  style={{ padding: "0.5em" }}
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://www.facebook.com/"
+                  title={FOOTER.facebook}
+                  content={<Icon name="facebook" size="big" />}
+                />
+                <List.Item
+                  as="a"
+                  style={{ padding: "0.5em" }}
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://www.instagram.com/milesbd_consulting/"
+                  title={FOOTER.instagram}
+                  content={<Icon name="instagram" size="big" />}
+                />
+                <List.Item
+                  as="a"
+                  style={{ padding: "0.5em" }}
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://twitter.com/MilesDuckworth"
+                  title={FOOTER.twitter}
+                  content={<Icon name="twitter" size="big" />}
+                />
+                <List.Item
+                  as="a"
+                  style={{ padding: "0.5em" }}
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://github.com/milesbd"
+                  title={FOOTER.github}
+                  content={<Icon name="github" size="big" />}
+                />
+              </List>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column width="16" textAlign="center">
+              <Divider inverted />
+              Copyright © {new Date().getFullYear()} - {FOOTER.copyCompany}
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
+    </Segment>
   );
 };
 

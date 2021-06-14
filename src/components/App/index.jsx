@@ -18,7 +18,7 @@ const NoMatch = lazy(() => import("../NoMatch"));
 const Home = lazy(()=> import("../Home"));
 const AccountPage = lazy(() => import("../Account"));
 const SignUpPage = lazy(() => import("../SignUp"));
-
+const Footer = lazy(()=>import("../Footer"));
 const renderLoader = () => {
   return (
     <Container fluid textAlign="center">
@@ -122,7 +122,7 @@ class Routes extends Component {
                 <NoMatch />
               </Route>
             </Switch>
-            {/* <Footer dark={dark} LanguageToggle={LanguageToggle} /> */}
+            <Footer language={language} />
           </ResponsiveContainer>
           <AuthUserContext.Consumer>
             {(authUser) => <PageView authUser={authUser} />}

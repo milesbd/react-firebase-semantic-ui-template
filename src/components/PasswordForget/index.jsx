@@ -111,7 +111,7 @@ class PasswordForgetFormBase extends Component {
 const PasswordForgetLink = (props) => {
   const { dark } = props;
   return (
-    <>
+    <React.Fragment>
       {/* <Message color={dark ? "black" : null} size="tiny">
         <Link
           to={ROUTES.PASSWORD_FORGET}
@@ -120,11 +120,21 @@ const PasswordForgetLink = (props) => {
           Forgot Password?
         </Link>
       </Message> */}
-      <Button as={NavLink} icon basic inverted={dark} fluid size="large" to={ROUTES.PASSWORD_FORGET} labelPosition="left" type="submit">
+      <Button
+        as={NavLink}
+        icon
+        basic
+        inverted={dark}
+        fluid
+        size="large"
+        to={ROUTES.PASSWORD_FORGET}
+        labelPosition="left"
+        type="submit"
+      >
         <Icon name="help" />
         Forgot Password?
       </Button>
-    </>
+    </React.Fragment>
   );
 };
 

@@ -145,7 +145,7 @@ class SignInGoogleBase extends Component {
     const { error } = this.state;
     const { dark, SIGNUP } = this.props;
     return (
-      <>
+      <React.Fragment>
         <Button
           icon
           basic
@@ -160,7 +160,7 @@ class SignInGoogleBase extends Component {
           {SIGNUP.google}
         </Button>
         {error && <Message error content={error.message} />}
-      </>
+      </React.Fragment>
     );
   }
 }

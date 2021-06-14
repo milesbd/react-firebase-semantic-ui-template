@@ -62,7 +62,7 @@ class UserListPage extends Component {
       sorted = users;
     }
     return (
-      <>
+      <React.Fragment>
         {success && (
           <Message
             onDismiss={this.handleDismiss}
@@ -151,7 +151,7 @@ class UserListPage extends Component {
             ))}
           </Table.Body>
         </Table>
-      </>
+      </React.Fragment>
     );
   }
 }
@@ -294,7 +294,7 @@ class ManageUser extends Component {
     console.log(dark, negative, warning)
     const { uid, error, success, confirm } = this.state;
     return (
-      <>
+      <React.Fragment>
         <Popup
           flowing
           trigger={<Button basic circular icon="edit outline" inverted={dark && (!negative && !warning)} />}
@@ -322,6 +322,7 @@ class ManageUser extends Component {
               uid={user.uid}
               user={user}
               disabled={user.uid === uid ? false : changing}
+              // eslint-disable-next-line
               role="ADMIN"
               action={user.roles.ADMIN ? "REMOVE" : "ADD"}
               onClick={this.toggleRole}
@@ -334,6 +335,7 @@ class ManageUser extends Component {
               uid={user.uid}
               user={user}
               disabled={user.uid === uid ? false : changing}
+              // eslint-disable-next-line
               role="STAFF"
               action={user.roles.STAFF ? "REMOVE" : "ADD"}
               onClick={this.toggleRole}
@@ -371,7 +373,7 @@ class ManageUser extends Component {
           header="Confirm Export Deletion"
           content="The export will be permanently deleted."
         />
-      </>
+      </React.Fragment>
     );
   }
 }
