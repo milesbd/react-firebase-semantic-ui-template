@@ -76,7 +76,7 @@ class SignInGoogleBase extends Component {
       const roles = {};
       let isAuthorized = false;
 
-      const whiteListEmails = ["lightspeedhq.com"];
+      const whiteListEmails = ["milesbd.ca"];
       const emailVerify = (email, acceptList) => {
         const [, domain] = email.split("@");
         return acceptList.includes(domain);

@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+# Firebase React Semantic UI Site Template
+### Welcome
+Nice to have you as a visitor! 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This site was created using Firebase as a back-end for authentication, user db, cloud functions, and hosting. O the front-end, React, along with [Semantic UI for React](https://react.semantic-ui.com/) (one of my favourite component libraries).
 
-## Available Scripts
+### Purpose
 
-In the project directory, you can run:
+This template site is intended to give a taste of my work, and what I can help you accomplish. While the features may not be evident at first glance, the site offers:
 
-### `yarn start`
+ - Multi-lingual support
+ - Role-based page access (i.e. admin, staff, consumer)
+ - Social Login/Account Creation
+ - Admin Panel for user management
+ - Mobile-Responsive design
+ - Dark Mode 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+With this core functionality, much more functionality can be added to suit your unique needs and accomplish your goals.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Like what you see? Please get in touch, and I'd be happy to chat about how this template can help you with your next project!
 
-### `yarn test`
+### Resources Used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This template would not have been possible without the great course offered by Robin Wieruch, [The Road to Firebase](https://courses.robinwieruch.de/). I highly encourage anyone looking to get started with Firebase & React to check out his courses
 
-### `yarn build`
+The component library [Semantic UI for React](https://react.semantic-ui.com/) provides the awesome design you see. A great UI library, that offers a fantastic developer experience.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

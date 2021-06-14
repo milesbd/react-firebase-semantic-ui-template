@@ -5,6 +5,20 @@ import "firebase/database";
 import "firebase/analytics";
 import "firebase/performance";
 
+// require('dotenv').config();
+
+
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// const firebaseConfig = {
+//   apiKey: process.env.REACT_APP_APIKEY,
+//   authDomain: process.env.REACT_APP_AUTHDOMAIN,
+//   databaseURL: process.env.REACT_APP_DATABASEURL,
+//   projectId: process.env.REACT_APP_PROJECTID,
+//   storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+//   messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
+//   appId: process.env.REACT_APP_APPID,
+//   measurementId: process.env.REACT_APP_MEASUREMENTID
+// };
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyArRHFXmzZQ0XEaqYozeotIH286G0QCAxU",
@@ -13,8 +27,8 @@ const firebaseConfig = {
   projectId: "react-firebase-site-template",
   storageBucket: "react-firebase-site-template.appspot.com",
   messagingSenderId: "62247076443",
-  appId: "1:62247076443:web:a726517fee4ec83cadf57e",
-  measurementId: "G-VDDC0VTWDS"
+  appId: "1:62247076443:web:9ded6d00800f7a68adf57e",
+  measurementId: "G-5876511K6S"
 };
 
 class Firebase {
