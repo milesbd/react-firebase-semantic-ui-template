@@ -22,7 +22,7 @@ import TRANSLATIONS from "../../constants/translation";
 
 const SignInPage = (props) => {
   const {language} = props;
-  const { SIGNUP } = TRANSLATIONS[`${language}`];
+  const { SIGNUP, SIGNIN } = TRANSLATIONS[`${language}`];
   return (
     <Segment basic inverted={props.dark} fluid="true" style={{ margin: 0 }}>
       <Segment basic inverted={props.dark} fluid="true">
@@ -33,12 +33,12 @@ const SignInPage = (props) => {
         >
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header as="h2" textAlign="center" inverted={props.dark}>
-              <Image src={logo} size="medium" /> Sign In
+              <Image src={logo} size="medium" /> {SIGNIN.header}
             </Header>
             <Segment stacked inverted={props.dark}>
-              <SignInForm {...props} />
+              <SignInForm {...props} SIGNIN={SIGNIN}/>
               <Divider horizontal inverted={props.dark}>
-                Or
+              {SIGNIN.or}
               </Divider>
               <SignInGoogle {...props} SIGNUP={SIGNUP} />
               <Divider hidden inverted={props.dark} horizontal>
@@ -202,7 +202,7 @@ class SignInFormBase extends Component {
 
   render() {
     const { email, password, error } = this.state;
-    const { dark } = this.props;
+    const { dark, SIGNIN } = this.props;
 
     const isInvalid = password === "" || email === "";
 
@@ -217,7 +217,7 @@ class SignInFormBase extends Component {
           value={email}
           onChange={this.onChange}
           type="text"
-          placeholder="Email Address"
+          placeholder={SIGNIN.email}
           inverted={dark}
         />
         <Form.Input
@@ -227,7 +227,7 @@ class SignInFormBase extends Component {
           name="password"
           value={password}
           onChange={this.onChange}
-          placeholder="Password"
+          placeholder={SIGNIN.password}
           type="password"
           inverted={dark}
         />
@@ -240,7 +240,7 @@ class SignInFormBase extends Component {
           inverted={dark}
           basic={dark}
         >
-          Sign In
+         {SIGNIN.header}
         </Button>
       </Form>
     );

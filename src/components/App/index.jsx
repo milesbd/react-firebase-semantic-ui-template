@@ -122,7 +122,7 @@ class Routes extends Component {
                 <NoMatch />
               </Route>
             </Switch>
-            <Footer language={language} />
+            <Footer language={language} dark={dark} />
           </ResponsiveContainer>
           <AuthUserContext.Consumer>
             {(authUser) => <PageView authUser={authUser} />}

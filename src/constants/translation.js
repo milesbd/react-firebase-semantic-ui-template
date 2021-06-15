@@ -72,6 +72,12 @@ const TRANSLATIONS = {
       google: "Connect with Google",
       message: "Don't have an account? ",
     },
+    SIGNIN:{
+      header:"Sign In",
+      email: "Email Address",
+      password: "Password",
+      or: "OR",
+    }
   },
   FR: {
     GLOBAL: {
@@ -146,6 +152,12 @@ const TRANSLATIONS = {
       google: "Connectez-vous avec Google",
       message: "Vous n'avez pas de compte ? ",
     },
+    SIGNIN:{
+      header:"Connexion",
+      email: "Courriel",
+      password: "Mot de passe",
+      or: "OU",
+    }
   },
 };
 export default TRANSLATIONS;
