@@ -2,6 +2,8 @@
 ### Welcome
 Nice to have you as a visitor! 
 
+To view this as a live demo, head on over to [semantic-ui.milesbd.ca](https://semantic-ui.milesbd.ca).
+
 This site was created using Firebase as a back-end for authentication, user db, cloud functions, and hosting. O the front-end, React, along with [Semantic UI for React](https://react.semantic-ui.com/) (one of my favourite component libraries).
 
 ### Purpose
