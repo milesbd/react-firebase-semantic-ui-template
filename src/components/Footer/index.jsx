@@ -35,7 +35,7 @@ const Footer = (props) => {
                   <List.Item
                     as="a"
                     style={{ padding: "0.5em" }}
-                    href="tel:18669321801"
+                    href="tel:18888888888"
                     title={FOOTER.phoneTitle}
                   >
                     <Icon name="phone" style={{ marginRight: "0.5em" }} />
